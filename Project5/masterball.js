@@ -18,7 +18,7 @@ function masterball_Obj (img, x,y, angle) {
             push();
             translate(pikachu.position.x, pikachu.position.y);
             rotate(this.angle);
-            temp_y -= 3.6;
+            temp_y -= 5;
             image(this.img, -15, temp_y -500, 30, 20);
             pop();
 
