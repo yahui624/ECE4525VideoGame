@@ -38,8 +38,9 @@ function setup() {
     createCanvas(500, 500);
 
     for (let i=0; i<4; i++) {
-        R2D2_Arr[i] = new R2D2_Obj(R2D2_Arr_Img,25, (i+1)*70);
+        R2D2_Arr.push(new R2D2_Obj(R2D2_Arr_Img,25, (i+0.5)*70), new R2D2_Obj(R2D2_Arr_Img,90, (i+0.5)*70));
     }
+
 
     start_Button = createButton('START GAME');
     start_Button.position(200, 400);
