@@ -11,3 +11,4 @@
   - To win the game, player needs to eliminate all the NPCs.
   - If any NPC reachs to the right border, player lose.
   - Refresh the page to restart the game.
+  - If two balls collide with each other, they will both change directions. 
