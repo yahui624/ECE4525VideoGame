@@ -1,7 +1,7 @@
 function simba_Obj (x, y) {
     this.position = createVector (x, y);
     this.direction = 1;
-    this.speed = 4;
+    this.speed = 8.5;
 
     this.draw = function () {
         scale(0.25);
@@ -72,7 +72,7 @@ function simba_Obj (x, y) {
 
     this.collide = function() {
         let c = 0;
-        if (this.position.x > 380 || this.position.y > 350 || this.position.x < 100 || this.position.y <50) {
+        if (this.position.x > 1500 || this.position.y > 1350 || this.position.x < 100 || this.position.y <50) {
             c = 1;
         }
         return c;

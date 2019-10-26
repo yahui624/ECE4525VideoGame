@@ -4,8 +4,8 @@ let simba;
 let bee;
 function preload() {
     gravity = createVector(0, 0.02);
-    simba = new simba_Obj(200, 200);
-    bee = new bee_Obj(20, 70);
+    simba = new simba_Obj(290, 300);
+    bee = new bee_Obj(200, 170);
 
 }
 

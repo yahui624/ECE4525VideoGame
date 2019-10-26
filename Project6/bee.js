@@ -2,7 +2,7 @@ function bee_Obj(x, y) {
     this.x=x;
     this.y=y;
     this.direction = 1;
-    this.speed = 4.5;
+    this.speed = 4;
 
     this.draw = function () {
         stroke(107, 44, 107);
@@ -26,6 +26,7 @@ function bee_Obj(x, y) {
         strokeWeight(2);
         translate(this.x, this.y);
         stroke(107, 44, 107);
+        fill(135,135,246);
         bezier(-5, 0, -15, -35, -23, 13, -5, -16.5);
         bezier(5, 0, 15, -35, 23, 13, 5, -16.5);
         pop();
@@ -58,7 +59,7 @@ function bee_Obj(x, y) {
 
     this.collide = function() {
         let c = 0;
-        if (this.x > 380 || this.y > 350 || this.x < 70 || this.y < 50) {
+        if (this.x > 380 || this.y > 360 || this.x < 70 || this.y < 50) {
             c = 1;
         }
         return c;
