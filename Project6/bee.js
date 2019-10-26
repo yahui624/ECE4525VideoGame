@@ -1,6 +1,7 @@
 function bee_Obj(x, y) {
     this.x=x;
     this.y=y;
+    this.position = createVector(x,y);
     this.direction = 1;
     this.speed = 1;
 
@@ -54,5 +55,49 @@ function bee_Obj(x, y) {
         triangle(0, 25, -5, 24.5, -2.5, 30); //tail needle
         pop();
         fill(255, 255, 255);
+    }
+
+    this.collide = function() {
+        let c = 0;
+        if (this.x > 380 || this.y > 350 || this.x < 70 || this.y < 50) {
+            c = 1;
+        }
+        return c;
+    }
+
+    this.move = function () {
+        if ((this.collide() === 1) && (random(0, 10) < 5)) {
+            this.direction = floor(random(1, 5));
+        }
+        switch (this.direction) {
+            case 1: //right
+                this.x += this.speed;
+                if (this.collide() === 1) {
+                    this.x -= this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+            case 2: //left
+                this.x -= this.speed;
+                if (this.collide() === 1) {
+                    this.x += this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+            case 3: //down
+                this.y += this.speed;
+                if (this.collide() === 1) {
+                    this.y -= this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+            case 4: //up
+                this.y -= this.speed;
+                if (this.collide() === 1) {
+                    this.y += this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+        }
     }
 }

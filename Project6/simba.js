@@ -1,8 +1,9 @@
 function simba_Obj (x, y) {
     this.position = createVector (x, y);
+    this.direction = 1;
+    this.speed = 4;
 
     this.draw = function () {
-
         scale(0.25);
         push();
         stroke(107, 44, 107);
@@ -67,7 +68,49 @@ function simba_Obj (x, y) {
         bezier(this.position.x, this.position.y+32, this.position.x-10, this.position.y+38,
             this.position.x-11, this.position.y+38, this.position.x-19, this.position.y+34); // left whisker
 
+    }
 
+    this.collide = function() {
+        let c = 0;
+        if (this.position.x > 380 || this.position.y > 350 || this.position.x < 100 || this.position.y <50) {
+            c = 1;
+        }
+        return c;
+    }
 
+    this.move = function () {
+        if ((this.collide() === 1) && (random(0, 10) < 5)) {
+            this.direction = floor(random(1, 5));
+        }
+        switch (this.direction) {
+            case 1: //right
+                this.position.x += this.speed;
+                if (this.collide() === 1) {
+                    this.position.x -= this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+            case 2: //left
+                this.position.x -= this.speed;
+                if (this.collide() === 1) {
+                    this.position.x += this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+            case 3: //down
+                this.position.y += this.speed;
+                if (this.collide() === 1) {
+                    this.position.y -= this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+            case 4: //up
+                this.position.y -= this.speed;
+                if (this.collide() === 1) {
+                    this.position.y += this.speed;
+                    this.direction = floor(random(1, 5));
+                }
+                break;
+        }
     }
 }

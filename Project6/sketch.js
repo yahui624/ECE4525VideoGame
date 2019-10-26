@@ -1,11 +1,13 @@
 let gravity;
 let fountains = [];
-let bees = [];
+let bee;
 let simba ;
+
 function preload() {
     frontPage = 0;
     gravity = createVector(0, 0.02);
     simba = new simba_Obj(200, 200);
+    bee = new bee_Obj(20, 70);
 }
 
 function setup() {
@@ -28,9 +30,10 @@ function draw() {
     background(135,135,246);
     angleMode(RADIANS);
     set_Fountains();
-    bees.push(new bee_Obj(20, 70));
-    bees[0].draw();
+
+    bee.draw();
+    bee.move();
     simba.draw();
+    simba.move();
 
 }
-
