@@ -1,9 +1,8 @@
 function bee_Obj(x, y) {
     this.x=x;
     this.y=y;
-    this.position = createVector(x,y);
     this.direction = 1;
-    this.speed = 1;
+    this.speed = 4.5;
 
     this.draw = function () {
         stroke(107, 44, 107);
@@ -65,7 +64,7 @@ function bee_Obj(x, y) {
         return c;
     }
 
-    this.move = function () {
+    this.move_work = function () {
         if ((this.collide() === 1) && (random(0, 10) < 5)) {
             this.direction = floor(random(1, 5));
         }

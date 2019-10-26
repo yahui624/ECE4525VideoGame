@@ -1,18 +1,16 @@
 let gravity;
 let fountains = [];
+let simba;
 let bee;
-let simba ;
-
 function preload() {
-    frontPage = 0;
     gravity = createVector(0, 0.02);
     simba = new simba_Obj(200, 200);
     bee = new bee_Obj(20, 70);
+
 }
 
 function setup() {
   createCanvas(400,400);
-
 }
 
 function set_Fountains() {
@@ -32,7 +30,7 @@ function draw() {
     set_Fountains();
 
     bee.draw();
-    bee.move();
+    bee.move_work();
     simba.draw();
     simba.move();
 
