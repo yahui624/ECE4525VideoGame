@@ -4,7 +4,7 @@ function simba_Obj (x, y) {
     this.speed = 8.5;
 
     this.draw = function () {
-        scale(0.25);
+        scale(0.3);
         push();
         stroke(107, 44, 107);
         strokeWeight(8);
@@ -13,7 +13,8 @@ function simba_Obj (x, y) {
         bezier(260, 355, 166, 274, 269, 250, 149, 204);
         ellipse(148, 210, 5,10);
         pop();
-
+        push();
+        strokeWeight(3);
         fill(237, 160, 83);
         push();
         translate(this.position.x-213, this.position.y-20);// back right leg
@@ -54,10 +55,10 @@ function simba_Obj (x, y) {
         fill(237, 160, 83);
         ellipse(this.position.x-24, this.position.y, 18, 40); // simba's left outer eye
         ellipse(this.position.x+20, this.position.y-4, 18, 40);// simba's right outer eye
-
+        fill(10, 9, 9);
         ellipse(this.position.x-24, this.position.y, 13, 23); // simba's left inner eye
         ellipse(this.position.x+20, this.position.y-4, 13, 23);// simba's right inner eye
-
+        fill(237, 160, 83);
         arc(this.position.x, this.position.y+4.2, 100, 90, -0.12, PI, open); // try to hide the lower half of the eyes
 
         triangle(this.position.x-16, this.position.y+16, this.position.x+16, this.position.y+15, this.position.x-2, this.position.y+28); // simba's mouse
@@ -67,12 +68,12 @@ function simba_Obj (x, y) {
             this.position.x+15, this.position.y+34, this.position.x, this.position.y +32); // right whisker
         bezier(this.position.x, this.position.y+32, this.position.x-10, this.position.y+38,
             this.position.x-11, this.position.y+38, this.position.x-19, this.position.y+34); // left whisker
-
+        pop();
     }
 
     this.collide = function() {
         let c = 0;
-        if (this.position.x > 1500 || this.position.y > 1350 || this.position.x < 100 || this.position.y <50) {
+        if (this.position.x > 1270 || this.position.y > 1210 || this.position.x < 110 || this.position.y <50) {
             c = 1;
         }
         return c;

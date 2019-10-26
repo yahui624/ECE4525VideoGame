@@ -1,3 +1,6 @@
+// Project 6 -- Yahui Zhao 10/25/2019
+// Lion King Simba and Bumblebee
+
 let gravity;
 let fountains = [];
 let simba;
