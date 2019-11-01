@@ -33,10 +33,8 @@ let BLACK
 let SEAFOAM
 let MINT
 let tower
-let song
-
+let song;
 function preload() {
-    soundFormats('mp3', 'ogg');
     song = loadSound('sound/Pharrell Williams - Freedom.mp3');
 }
 
@@ -79,8 +77,7 @@ function setup() {
 
     // initialize new object
     tower = new tower_Obj(250, 60);
-
-    song.setVolume(0.1);
+    slider  = createSlider (0, 1, 0.5, 0.01);
     song.play();
 }
 
@@ -89,5 +86,6 @@ function setup() {
 function draw() {
     background(SEAFOAM);
     tower.draw();
+    song.setVolume(slider.value());
 }
 
