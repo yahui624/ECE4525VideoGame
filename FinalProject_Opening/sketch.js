@@ -33,13 +33,15 @@ let BLACK
 let SEAFOAM
 let MINT
 let tower
+let song
 
 function preload() {
-
+    soundFormats('mp3', 'ogg');
+    song = loadSound('sound/Pharrell Williams - Freedom.mp3');
 }
 
 function setup() {
-    createCanvas(500, 600);
+    createCanvas(800, 600);
     DD_RED = color(100, 0, 0);
     D_RED = color(180, 0, 0);
     RED = color(255, 0, 0);
@@ -78,12 +80,11 @@ function setup() {
     // initialize new object
     tower = new tower_Obj(250, 60);
 
+    song.setVolume(0.1);
+    song.play();
 }
 
 
-function mouseClicked() {
-
-}
 
 function draw() {
     background(SEAFOAM);
