@@ -2,12 +2,13 @@ function tower_Obj (x, y) {
     this.position = createVector(x, y);
 
     this.draw = function () {
+        push();
         strokeWeight(1.5);
         stroke(D_BROWN);
         line(this.position.x, this.position.y, this.position.x, this.position.y + 20);
-
+        fill(TEAL);
         // creating tower top
-        push();
+
         translate(this.position.x, this.position.y + 20);
         beginShape();
         vertex(-3, 0);
@@ -32,6 +33,9 @@ function tower_Obj (x, y) {
 
         // creating the first part of the tower
         push();
+        strokeWeight(1.5);
+        stroke(D_BROWN);
+        fill(TEAL);
         translate(this.position.x, this.position.y + 90);
         beginShape(QUAD_STRIP);
         vertex(-16, 0);

@@ -41,14 +41,14 @@ let minion_3_img;
 let minion1_Obj;
 let minion2_Obj;
 let minion3_Obj;
-let fontBold;
 let title;
+let start_Buttons;
+let view_instruction = false;
 function preload() {
     song = loadSound('sound/Pharrell Williams - Freedom.mp3');
     minion_1_img = loadImage('images/minion_1.jpg');
     minion_2_img = loadImage('images/minion_2.jpg');
     minion_3_img = loadImage('images/minion_3.jpg');
-
     // fontBold = loadFont('assets/Bold.ttf');
 
 }
@@ -93,26 +93,39 @@ function setup() {
     // initialize new object
     tower = new tower_Obj(250, 60);
     title = new title_Obj(380, -30);
+    start_Buttons = new starting_Buttons();
 
     slider  = createSlider (0, 1, 0.5, 0.01);
     song.play();
 
-    minion1_Obj = new minion_Obj(minion_1_img, 400, 500);
-    minion2_Obj = new minion_Obj(minion_2_img, 500, 500);
-    minion3_Obj = new minion_Obj(minion_3_img, 600, 500);
+    minion1_Obj = new minion_Obj(minion_1_img, 400, 460, 0);
+    minion2_Obj = new minion_Obj(minion_2_img, 500, 460, 0.4);
+    minion3_Obj = new minion_Obj(minion_3_img, 600, 460, 0.8);
 }
 
-
+function mouseClicked(){
+    if (start_Buttons.view_instruction() === true) {
+        background(L_YELLOW);
+        start_Buttons.instruct_display();
+    }
+}
 
 function draw() {
     background(L_YELLOW);
 
+
     song.setVolume(slider.value());
+    start_Buttons.draw();
     tower.draw();
     title.animation();
     title.draw();
+    minion1_Obj.animation();
+    minion2_Obj.animation();
+    minion3_Obj.animation();
     minion1_Obj.draw();
     minion2_Obj.draw();
     minion3_Obj.draw();
+
+
 }
 

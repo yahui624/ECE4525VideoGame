@@ -7,9 +7,15 @@ function title_Obj (x, y) {
     this.bounceCoeff = -(100 - this.size) / 100;
 
     this.draw = function () {
+        push();
+        stroke(D_PURPLE);
+        fill(TEAL);
         textSize(40);
-        // textFont(fontBold);
         text("TOWER BREAK", this.position.x, this.position.y);
+        textSize (26);
+
+        text("By Yahui Zhao", this.position.x+20, this.position.y+46)
+        pop();
     }
 
     this.animation = function () {
