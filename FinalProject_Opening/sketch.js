@@ -104,28 +104,30 @@ function setup() {
 }
 
 function mouseClicked(){
-    if (start_Buttons.view_instruction() === true) {
-        background(L_YELLOW);
-        start_Buttons.instruct_display();
-    }
+    console.log("DAHHHHHHHHHHHH");
+    console.log(view_instruction);
+    return true;
 }
 
 function draw() {
     background(L_YELLOW);
 
-
     song.setVolume(slider.value());
-    start_Buttons.draw();
-    tower.draw();
-    title.animation();
-    title.draw();
-    minion1_Obj.animation();
-    minion2_Obj.animation();
-    minion3_Obj.animation();
-    minion1_Obj.draw();
-    minion2_Obj.draw();
-    minion3_Obj.draw();
-
+    if (view_instruction === false) {
+        start_Buttons.draw();
+        tower.draw();
+        title.animation();
+        title.draw();
+        minion1_Obj.animation();
+        minion2_Obj.animation();
+        minion3_Obj.animation();
+        minion1_Obj.draw();
+        minion2_Obj.draw();
+        minion3_Obj.draw();
+        start_Buttons.view_instruction()
+    } else {
+        start_Buttons.instruct_display();
+    }
 
 }
 

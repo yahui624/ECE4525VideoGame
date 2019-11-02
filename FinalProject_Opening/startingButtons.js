@@ -24,16 +24,20 @@ function starting_Buttons() {
     this.view_instruction = function () {
         if (mouseX > 386 && mouseY > 320 && mouseX < 626 && mouseY < 380) {
             cursor('grab');
-            view_instruction = true;
+            if (mouseIsPressed) {
+                view_instruction = true;
+            }
         }
         else if (mouseX > 386 && mouseY > 240 && mouseX < 626 && mouseY < 300) {
             cursor('grab');
+            view_instruction = false;
         }
         else {
-            cursor('https://s3.amazonaws.com/mupublicdata/cursor.cur');
+            cursor(ARROW);
+            view_instruction = false;
         }
-        return view_instruction;
     }
+
 
     this.instruct_display = function () {
         textSize(26);
