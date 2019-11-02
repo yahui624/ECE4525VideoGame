@@ -41,12 +41,16 @@ let minion_3_img;
 let minion1_Obj;
 let minion2_Obj;
 let minion3_Obj;
-
+let fontBold;
+let title;
 function preload() {
     song = loadSound('sound/Pharrell Williams - Freedom.mp3');
     minion_1_img = loadImage('images/minion_1.jpg');
     minion_2_img = loadImage('images/minion_2.jpg');
     minion_3_img = loadImage('images/minion_3.jpg');
+
+    // fontBold = loadFont('assets/Bold.ttf');
+
 }
 
 function setup() {
@@ -88,6 +92,8 @@ function setup() {
 
     // initialize new object
     tower = new tower_Obj(250, 60);
+    title = new title_Obj(380, -30);
+
     slider  = createSlider (0, 1, 0.5, 0.01);
     song.play();
 
@@ -100,8 +106,11 @@ function setup() {
 
 function draw() {
     background(L_YELLOW);
-    tower.draw();
+
     song.setVolume(slider.value());
+    tower.draw();
+    title.animation();
+    title.draw();
     minion1_Obj.draw();
     minion2_Obj.draw();
     minion3_Obj.draw();
