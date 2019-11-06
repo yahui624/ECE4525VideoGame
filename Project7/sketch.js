@@ -1,40 +1,38 @@
-// Project 6 -- Yahui Zhao 10/25/2019
-// Lion King Simba and Bumblebee
+// Project 7 -- Yahui Zhao 11/04/2019
 
-let gravity;
-let fountains = [];
-let simba;
-let bee;
+let initialized = 0;
+let walls = [];
+let graph;
+let cost;
+let inq ;
+let comefrom;
+let game_obj;
+
 function preload() {
-    gravity = createVector(0, 0.02);
-    simba = new simba_Obj(290, 300);
-    bee = new bee_Obj(200, 170);
+
 
 }
 
 function setup() {
-  createCanvas(400,400);
-}
+    createCanvas(400, 400);
+    game_obj = new Game();
+    graph = new Array(20);
+    cost = new Array(20);
+    inq = new Array(20);
+    comefrom = new Array(20);
 
-function set_Fountains() {
-    push();
-    translate(200, 200);
-    for (let i=0; i<=10; i++) {
-        rotate(PI/3);
-        fountains.push(new fountain_Obj(80, 80));
-        fountains[i].execute();
+    for (var i = 0; i < 20; i++) { // Making 2D array
+        graph[i] = new Array(20);
+        cost[i] = new Array(20);
+        inq[i] = new Array(20);
+        comefrom[i] = new Array(20);
     }
-    pop();
 }
 
 function draw() {
     background(135,135,246);
     angleMode(RADIANS);
-    set_Fountains();
-
-    bee.draw();
-    bee.move_work();
-    simba.draw();
-    simba.move();
+    game_obj.initialize();
+    game_obj.displayTilemap();
 
 }
