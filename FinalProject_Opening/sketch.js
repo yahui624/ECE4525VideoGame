@@ -33,6 +33,7 @@ let BLACK
 let SEAFOAM
 let MINT
 
+let bg_img;
 let tower
 let song;
 let minion_1_img;
@@ -44,7 +45,6 @@ let minion3_Obj;
 let gravity;
 let backForce;
 let walkForce;
-
 let ladder_img;
 let level1_tilemap;
 let level1_game;
@@ -64,6 +64,7 @@ function preload() {
     ladder_img = loadImage('images/ladder.png');
     level1_tilemap = loadImage('images/prison_wall.png');
     ladder_img = loadImage('images/ladder.png');
+    bg_img = loadImage('images/bg.jpg');
     // fontBold = loadFont('assets/Bold.ttf');
 
 }
@@ -160,9 +161,11 @@ function mouseClicked(){
 }
 
 function draw() {
-    background(L_YELLOW);
+    // background(L_YELLOW);
+
     song.setVolume(slider.value());
     if (view_instruction === false && game_start === false) {
+        background(bg_img);
         start_Buttons.draw();
         tower.draw();
         title.animation();
@@ -175,9 +178,11 @@ function draw() {
         minion3_Obj.draw();
         start_Buttons.select_options()
     } else if (view_instruction) {
+        background(L_BLUE);
         start_Buttons.instruct_display();
         // start_Buttons.display_returningButton();
     } else if (game_start) {
+        background(L_BLUE);
         if (keys[37]) { // LEFT
             minion.walkBackward = 1;
         }
