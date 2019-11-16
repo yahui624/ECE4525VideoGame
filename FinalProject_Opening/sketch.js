@@ -41,20 +41,27 @@ let minion_3_img;
 let minion1_Obj;
 let minion2_Obj;
 let minion3_Obj;
+let ladder;
+
 let title;
 let start_Buttons;
 let view_instruction = false;
+let game_start = false;
+let gif_minion_start;
+
 function preload() {
     song = loadSound('sound/Pharrell Williams - Freedom.mp3');
-    minion_1_img = loadImage('images/minion_1.jpg');
-    minion_2_img = loadImage('images/minion_2.jpg');
-    minion_3_img = loadImage('images/minion_3.jpg');
+    minion_1_img = loadImage('images/minion1.png');
+    minion_2_img = loadImage('images/minion2.png');
+    minion_3_img = loadImage('images/minion3.png');
+    ladder_img = loadImage('images/ladder.png');
+
     // fontBold = loadFont('assets/Bold.ttf');
 
 }
 
 function setup() {
-    createCanvas(800, 600);
+    createCanvas(600, 600);
     DD_RED = color(100, 0, 0);
     D_RED = color(180, 0, 0);
     RED = color(255, 0, 0);
@@ -91,16 +98,19 @@ function setup() {
     MINT = color(120, 240, 200);
 
     // initialize new object
-    tower = new tower_Obj(250, 60);
-    title = new title_Obj(380, -30);
+    tower = new tower_Obj(200, 60);
+    title = new title_Obj(280, -30);
     start_Buttons = new starting_Buttons();
 
     slider  = createSlider (0, 1, 0.5, 0.01);
     song.play();
 
-    minion1_Obj = new minion_Obj(minion_1_img, 400, 460, 0);
-    minion2_Obj = new minion_Obj(minion_2_img, 500, 460, 0.4);
-    minion3_Obj = new minion_Obj(minion_3_img, 600, 460, 0.8);
+    minion1_Obj = new minion_Obj(minion_1_img, 300, 460, 0);
+    minion2_Obj = new minion_Obj(minion_2_img, 400, 460, 0.4);
+    minion3_Obj = new minion_Obj(minion_3_img, 500, 460, 0.8);
+    ladder = new ladder_Obj(40, 40);
+
+    // instruction_return_buttton.hide();
 }
 
 function mouseClicked(){
@@ -111,9 +121,8 @@ function mouseClicked(){
 
 function draw() {
     background(L_YELLOW);
-
     song.setVolume(slider.value());
-    if (view_instruction === false) {
+    if (view_instruction === false && game_start === false ) {
         start_Buttons.draw();
         tower.draw();
         title.animation();
@@ -124,9 +133,15 @@ function draw() {
         minion1_Obj.draw();
         minion2_Obj.draw();
         minion3_Obj.draw();
-        start_Buttons.view_instruction()
-    } else {
+        start_Buttons.select_options()
+    } else if (view_instruction){
         start_Buttons.instruct_display();
+        // start_Buttons.display_returningButton();
+    }
+    else if (game_start) {
+        gif_minion_start = createImg('images/minion_start.gif');
+        ladder.draw();
+        gif_minion_start.position(50, 350);
     }
 
 }
