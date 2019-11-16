@@ -41,13 +41,20 @@ let minion_3_img;
 let minion1_Obj;
 let minion2_Obj;
 let minion3_Obj;
-let ladder;
+let gravity;
+let backForce;
+let walkForce;
 
+let ladder_img;
+let level1_tilemap;
+let level1_game;
 let title;
 let start_Buttons;
 let view_instruction = false;
 let game_start = false;
-let gif_minion_start;
+let minion;
+
+let waterfall_Particles =[];
 
 function preload() {
     song = loadSound('sound/Pharrell Williams - Freedom.mp3');
@@ -55,7 +62,8 @@ function preload() {
     minion_2_img = loadImage('images/minion2.png');
     minion_3_img = loadImage('images/minion3.png');
     ladder_img = loadImage('images/ladder.png');
-
+    level1_tilemap = loadImage('images/prison_wall.png');
+    ladder_img = loadImage('images/ladder.png');
     // fontBold = loadFont('assets/Bold.ttf');
 
 }
@@ -102,16 +110,48 @@ function setup() {
     title = new title_Obj(280, -30);
     start_Buttons = new starting_Buttons();
 
-    slider  = createSlider (0, 1, 0.5, 0.01);
+    slider = createSlider(0, 1, 0.5, 0.01);
     song.play();
 
     minion1_Obj = new minion_Obj(minion_1_img, 300, 460, 0);
     minion2_Obj = new minion_Obj(minion_2_img, 400, 460, 0.4);
     minion3_Obj = new minion_Obj(minion_3_img, 500, 460, 0.8);
-    ladder = new ladder_Obj(40, 40);
+    minion = new minion_Obj(minion_3_img, 20, 560);
+    gravity = createVector(0, 0.1);
+    walkForce = createVector(0.1, 0);
+    backForce = createVector(-0.1, 0);
+
+
+    level1_game = new level1_GameObj();
+    // ladder = new ladder_Obj(40, 40);
 
     // instruction_return_buttton.hide();
 }
+
+// function keyPressed() {
+//     if (keyCode === RIGHT_ARROW) {
+//         console.log("IM print something");
+//         minion.walkForward = 1;
+//     }
+//     if (keyCode === LEFT_ARROW) {
+//         minion.walkBackward = 1;
+//     }
+//      // jumping effect
+//     if (keyCode === UP_ARROW && minion.jump === 0) {
+//         console.log("I should jump now");
+//         minion.jump = 2;
+//     }
+// }
+
+
+let  keys = [];
+keyPressed = function(){
+    keys[keyCode] = true;
+};
+keyReleased = function(){
+    keys[keyCode] = false;
+};
+
 
 function mouseClicked(){
     console.log("DAHHHHHHHHHHHH");
@@ -122,7 +162,7 @@ function mouseClicked(){
 function draw() {
     background(L_YELLOW);
     song.setVolume(slider.value());
-    if (view_instruction === false && game_start === false ) {
+    if (view_instruction === false && game_start === false) {
         start_Buttons.draw();
         tower.draw();
         title.animation();
@@ -134,14 +174,26 @@ function draw() {
         minion2_Obj.draw();
         minion3_Obj.draw();
         start_Buttons.select_options()
-    } else if (view_instruction){
+    } else if (view_instruction) {
         start_Buttons.instruct_display();
         // start_Buttons.display_returningButton();
-    }
-    else if (game_start) {
-        gif_minion_start = createImg('images/minion_start.gif');
-        ladder.draw();
-        gif_minion_start.position(50, 350);
+    } else if (game_start) {
+        if (keys[37]) { // LEFT
+            minion.walkBackward = 1;
+        }
+        if (keys[39]) { // right
+            minion.walkForward = 1;
+        }
+        if (keys[38] && minion.jump === 0) { // UP
+            minion.jump = 2;
+        }
+        level1_game.initialize();
+        level1_game.createWaterfall();
+        minion.collision();
+        minion.landing(level1_game);
+        minion.play_Character();
+        minion.update();
+
     }
 
 }
