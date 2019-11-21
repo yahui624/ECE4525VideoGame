@@ -6,6 +6,7 @@
   run to the top of the basement and avoid being flooded by the leaking water 
   
 ### Further Improvement 
+  - ladder function
   - the rise of water level 
   - minion falling from the platfrom not function correctly 
 
