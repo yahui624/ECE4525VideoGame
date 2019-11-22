@@ -1,7 +1,7 @@
 
-let cx = 50;
-let cy = 250;
-let cz = 350;
+let cx = -24;
+let cy = -100;
+let cz = 280;
 let wood;
 
 function setup() {
@@ -15,8 +15,8 @@ function mouseDragged() {
 }
 
 function draw() {
-    
-    camera(cx,cy,cz,200,200,0,0,1,0);
+
+    camera(cx,cy,cz,0,0,0,0,1,0);
     background(205, 102, 94);
     angleMode(RADIANS);
     let top_width = 210;
@@ -25,10 +25,9 @@ function draw() {
     texture(wood);
     noStroke();
 
-    let left_height = 140;
-    // //   rotateZ(frameCount * 0.01);
-    // rotateX(frameCount * 0.01);
-    // rotateY(frameCount * 0.01);
+    rotateZ(frameCount * 0.01);
+    rotateX(frameCount * 0.01);
+    rotateY(frameCount * 0.01);
 
     // the top part of the chair
     push();
