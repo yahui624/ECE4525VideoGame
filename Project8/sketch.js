@@ -1,6 +1,7 @@
 
-let cx = -50;
-let cz = 250;
+let cx = 50;
+let cy = 250;
+let cz = 350;
 let wood;
 
 function setup() {
@@ -8,7 +9,14 @@ function setup() {
     wood = loadImage('images/seamless-wood.jpg');
 }
 
+function mouseDragged() {
+    cx += (mouseX - pmouseX)*2;
+    cy += (mouseY - pmouseY)*2;
+}
+
 function draw() {
+    
+    camera(cx,cy,cz,200,200,0,0,1,0);
     background(205, 102, 94);
     angleMode(RADIANS);
     let top_width = 210;
@@ -18,9 +26,9 @@ function draw() {
     noStroke();
 
     let left_height = 140;
-    //   rotateZ(frameCount * 0.01);
-    rotateX(frameCount * 0.01);
-    rotateY(frameCount * 0.01);
+    // //   rotateZ(frameCount * 0.01);
+    // rotateX(frameCount * 0.01);
+    // rotateY(frameCount * 0.01);
 
     // the top part of the chair
     push();
